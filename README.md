@@ -25,3 +25,8 @@ Example:
 
 ```bash
 gcc -Wall -Wextra -O2 file.c -o program
+
+## Notes
+
+All unsafe examples are intentionally written to demonstrate specific classes of vulnerabilities. 
+They are not examples of production-safe code.
