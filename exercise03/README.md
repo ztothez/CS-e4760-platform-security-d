@@ -31,5 +31,5 @@ This mirrors real-world vulnerability classes such as:
 
 ---
 
-⚠ These programs are intentionally unsafe and are not examples of correct coding practices.  
+These programs are intentionally unsafe and are not examples of correct coding practices.  
 They are used to illustrate how subtle memory violations can lead to serious security issues.
