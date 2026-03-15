@@ -25,7 +25,7 @@ static void demo_stack_overrun(void) {
     }
 
     // If secret sits next to buf in the current stack layout, it may change.
-    printf("After  overrun: secret = 0x%016llx\n", (unsigned long long)secret);
+    printf("Before overrun: secret = 0x%016llx\n", (unsigned long long)(secret & 0xFFFF));
 
     // Small guard to keep buf "used" in a visible way.
     if (buf[0] == 0xFF) {
