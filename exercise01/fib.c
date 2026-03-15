@@ -13,10 +13,12 @@ int main(int argc, char** argv) {
 
     // If "--" is used, treat the next argument as the output file
     if (argc == 3 && strcmp(argv[1], "--") == 0) {
-        char path[256];
-        snprintf(path, sizeof(path), "%s", argv[2]);
+        if (strstr(argv[2], "..") != NULL || strchr(argv[2], '/') != NULL || strchr(argv[2], '\\') != NULL) {
+            fprintf(stderr, "Invalid output file\n");
+            return 1;
+        }
     
-        out = fopen(path, "w");
+        out = fopen(argv[2], "w");
         if (!out) {
             fprintf(stderr, "Could not open file: %s\n", argv[2]);
             return 1;
@@ -25,18 +27,22 @@ int main(int argc, char** argv) {
     // If "-" is provided, explicitly use stdout
     else if (argc == 2 && strcmp(argv[1], "-") == 0) {
         out = stdout;
-    }
-        
-    // Otherwise assume the argument is a filename
-    else if (argc == 2 && strstr(argv[1], "..") == NULL) {
-        const char *filename = argv[1];
-        out = fopen(filename, "w");
+    }   
+    
+        // Otherwise assume the argument is a filename
+    else if (argc == 2) {
+        if (strstr(argv[1], "..") != NULL || strchr(argv[1], '/') != NULL || strchr(argv[1], '\\') != NULL) {
+            fprintf(stderr, "Invalid output file\n");
+            return 1;
+        }
+    
+        out = fopen(argv[1], "w");
         if (!out) {
-            fprintf(stderr, "Could not open file: %s\n", filename);
+            fprintf(stderr, "Could not open file: %s\n", argv[1]);
             return 1;
         }
     }
-
+    
     // Print a simple header first
     fprintf(out, "Fibonacci numbers:\n");
 
