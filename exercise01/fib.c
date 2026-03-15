@@ -13,7 +13,7 @@ int main(int argc, char** argv) {
 
     // If "--" is used, treat the next argument as the output file
     if (argc == 3 && strcmp(argv[1], "--") == 0) {
-        out = fopen(argv[2], "w");
+        out = aws_fopen(input_path, "r");
         if (!out) {
             fprintf(stderr, "Could not open file: %s\n", argv[2]);
             return 1;
