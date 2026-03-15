@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <string.h>
 
+static FILE *safe_fopen(const char *path, const char *mode) {
+    if (strstr(path, "..") != NULL || strchr(path, '/') != NULL || strchr(path, '\\') != NULL) {
+        return NULL;
+    }
+    return fopen(path, mode);
+}
+
 int main(int argc, char** argv) {
 
     // Check if too many args are provided or invalid combination
@@ -18,7 +25,7 @@ int main(int argc, char** argv) {
             return 1;
         }
     
-        out = fopen(argv[2], "w");
+        out = safe_fopen(argv[2], "w");
         if (!out) {
             fprintf(stderr, "Could not open file: %s\n", argv[2]);
             return 1;
@@ -36,7 +43,7 @@ int main(int argc, char** argv) {
             return 1;
         }
     
-        out = fopen(argv[1], "w");
+        out = safe_fopen(argv[1], "w");
         if (!out) {
             fprintf(stderr, "Could not open file: %s\n", argv[1]);
             return 1;
