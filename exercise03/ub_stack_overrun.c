@@ -16,7 +16,7 @@ static void demo_stack_overrun(void) {
         buf[i] = (unsigned char)i;
     }
 
-    printf("Before overrun: secret = 0x%016llx\n", (unsigned long long)secret);
+    printf("Before overrun: secret = 0x%016llx\n", (unsigned long long)(secret & 0xFFFF));
 
     // Deliberate overflow: buf is 8 bytes, but we write past it.
     // This is undefined behavior and may overwrite nearby locals, saved registers, or return address.
