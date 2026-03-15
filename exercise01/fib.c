@@ -11,7 +11,7 @@ static FILE *safe_fopen(const char *path, const char *mode) {
         return NULL;
     }
 
-    return fopen(path, mode);
+    return fopen(safe_path, mode);
 }
 
 int main(int argc, char** argv) {
