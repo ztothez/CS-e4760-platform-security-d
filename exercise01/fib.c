@@ -13,7 +13,10 @@ int main(int argc, char** argv) {
 
     // If "--" is used, treat the next argument as the output file
     if (argc == 3 && strcmp(argv[1], "--") == 0) {
-        out = fopen(argv[2], "w");
+        char path[256];
+        snprintf(path, sizeof(path), "%s", argv[2]);
+    
+        out = fopen(path, "w");
         if (!out) {
             fprintf(stderr, "Could not open file: %s\n", argv[2]);
             return 1;
@@ -23,11 +26,13 @@ int main(int argc, char** argv) {
     else if (argc == 2 && strcmp(argv[1], "-") == 0) {
         out = stdout;
     }
+        
     // Otherwise assume the argument is a filename
     else if (argc == 2 && strstr(argv[1], "..") == NULL) {
-        out = fopen(argv[1], "w");
+        const char *filename = argv[1];
+        out = fopen(filename, "w");
         if (!out) {
-            fprintf(stderr, "Could not open file: %s\n", argv[1]);
+            fprintf(stderr, "Could not open file: %s\n", filename);
             return 1;
         }
     }
