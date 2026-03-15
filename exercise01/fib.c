@@ -2,10 +2,16 @@
 #include <string.h>
 
 static FILE *safe_fopen(const char *path, const char *mode) {
-    if (strstr(path, "..") != NULL || strchr(path, '/') != NULL || strchr(path, '\\') != NULL) {
+    const char *name = strrchr(path, '/');
+    if (name) {
+        path = name + 1;
+    }
+
+    if (strstr(path, "..") != NULL || strchr(path, '\\') != NULL) {
         return NULL;
     }
-    return safe_fopen(path, mode);
+
+    return fopen(path, mode);
 }
 
 int main(int argc, char** argv) {
