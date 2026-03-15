@@ -5,7 +5,7 @@ static FILE *safe_fopen(const char *path, const char *mode) {
     if (strstr(path, "..") != NULL || strchr(path, '/') != NULL || strchr(path, '\\') != NULL) {
         return NULL;
     }
-    return fopen(path, mode);
+    return safe_fopen(path, mode);
 }
 
 int main(int argc, char** argv) {
