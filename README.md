@@ -1,32 +1,30 @@
 # CS-E4760 – Platform Security
 
-This repository contains my coursework for CS-E4760 (Platform Security).
+Coursework for CS-E4760 (Platform Security), focused on low-level system behavior and secure programming in C.
 
-The exercises focus on low-level system behavior and security concepts implemented in C.  
-Topics include permission models, argument validation, undefined behavior, and memory safety issues.
+The exercises explore how vulnerabilities arise from incorrect assumptions in areas such as input handling, memory usage, and permission checks.
 
-Each exercise is organized into its own folder and is self-contained.
-
-All programs were compiled and tested on a Linux environment using `gcc`.
+All programs are written in C and tested on Linux using `gcc`.
 
 ---
 
 ## Structure
 
-- `exercise01/` – Basic program structure, argument handling, and file output.
-- `exercise02/` – Simulating UNIX-style permission checks.
-- `exercise03/` – Demonstrations of undefined behavior (stack overflow and type confusion).
+- `exercise01/` – Argument handling and controlled file output
+- `exercise02/` – Simulated UNIX-style permission checks
+- `exercise03/` – Undefined behavior (stack overflow, type confusion)
+
+Each exercise is self-contained and targets a specific class of issues.
 
 ---
 
 ## Compilation
 
-Example:
-
 ```bash
 gcc -Wall -Wextra -O2 file.c -o program
-```
-## Notes
 
-All unsafe examples are intentionally written to demonstrate specific classes of vulnerabilities. 
-They are not examples of production-safe code.
+Notes
+
+Some programs intentionally include unsafe patterns to demonstrate specific classes of vulnerabilities.
+
+These examples are included for learning purposes and are not production-safe.

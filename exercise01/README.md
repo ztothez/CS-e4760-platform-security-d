@@ -1,27 +1,47 @@
-# CS-E4760 – Platform Security
+# Exercise 01 – Argument Handling and File Output
+This program generates the first 10 Fibonacci numbers and writes them either to stdout or to a user-specified file.
 
-This repository contains my coursework for CS-E4760 (Platform Security).
+It focuses on argument parsing and restricting unsafe file access.
 
-The exercises focus on low-level system behavior and security concepts implemented in C.  
-Topics include permission models, argument validation, undefined behavior, and memory safety issues.
+Exit codes:
+- `0` → success  
+- `1` → invalid arguments or file error  
 
-Each exercise is organized into its own folder and is self-contained.
+## What this exercise demonstrates
+- Argument parsing with constrained input
+- Basic file handling in C
+- Input validation for filesystem operations
+- Avoiding unsafe defaults when dealing with user input
 
-All programs were compiled and tested on a Linux environment using `gcc`.
+The goal is to ensure that user-provided filenames cannot escape the intended scope.
 
----
-
-## Structure
-
-- `exercise01/` – Basic program structure, argument handling, and file output.
-- `exercise02/` – Simulating UNIX-style permission checks.
-- `exercise03/` – Demonstrations of undefined behavior (stack overflow and type confusion).
-
----
-
-## Compilation
-
-Example:
-
+## Usage
 ```bash
-gcc -Wall -Wextra -O2 file.c -o program
+./program [file]
+./program -- <file>
+./program -
+````
+
+* No argument → stdout
+* `<file>` → writes to file
+* `-- <file>` → explicit file mode
+* `-` → forces stdout
+
+Invalid combinations are rejected.
+
+## Example
+```bash
+./program output.txt
+```
+
+Writes the Fibonacci sequence to `output.txt` if the filename passes validation.
+
+## Notes
+The program rejects:
+
+* paths containing `..`
+* directory separators (`/`, `\`)
+
+Only simple filenames are accepted. This prevents path traversal and unintended file access.
+
+Validation is intentionally minimal and does not aim to fully secure filesystem interactions.
