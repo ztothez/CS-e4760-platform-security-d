@@ -1,30 +1,20 @@
-# CS-E4760 – Platform Security
+# Platform Security Labs
 
-Coursework for CS-E4760 (Platform Security), focused on low-level system behavior and secure programming in C.
+Hands-on C-based exercises exploring platform-level security mechanisms, low-level system behavior, and secure programming practices on Linux.
 
-The exercises explore how vulnerabilities arise from incorrect assumptions in areas such as input handling, memory usage, and permission checks.
+## Overview
 
-All programs are written in C and tested on Linux using `gcc`.
+This project focuses on how modern platforms enforce security at the system level, including file permissions, process behavior, and unsafe assumptions in software.
 
----
+The exercises demonstrate how vulnerabilities arise from incorrect assumptions and how platform features mitigate them.
 
-## Structure
+## What this demonstrates
 
-- `exercise01/` – Argument handling and controlled file output
-- `exercise02/` – Simulated UNIX-style permission checks
-- `exercise03/` – Undefined behavior (stack overflow, type confusion)
+- Understanding of low-level system behavior and security mechanisms  
+- Experience with C programming in a Linux environment  
+- Analysis of unsafe input handling and undefined behavior  
+- Practical exploration of how platforms enforce security constraints
 
-Each exercise is self-contained and targets a specific class of issues.
+## Background
 
----
-
-## Compilation
-
-```bash
-gcc -Wall -Wextra -O2 file.c -o program
-
-Notes
-
-Some programs intentionally include unsafe patterns to demonstrate specific classes of vulnerabilities.
-
-These examples are included for learning purposes and are not production-safe.
+Originally developed as part of the Platform Security course at university, focused on platform-level security features and their implementation.
